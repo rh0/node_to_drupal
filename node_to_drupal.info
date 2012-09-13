@@ -1,0 +1,6 @@
+name = Node Message to Drupal Example
+description = An example of a nodejs server sending a custom message back to drupal.
+package = Nodejs
+version = VERSION
+core = 7.x
+

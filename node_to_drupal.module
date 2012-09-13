@@ -1,0 +1,43 @@
+<?php
+
+/**
+ * Implements hook_menu().
+ */
+function node_to_drupal_menu() {
+  $items['message-watchdog'] = array(
+    'title' => 'Log an event to watchdog',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('node_to_drupal_form'),
+    'access arguments' => array('access content'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+
+  return $items;
+}
+
+function node_to_drupal_form($form , &$form_state) {
+  drupal_add_js(drupal_get_path('module', 'node_to_drupal') . '/node_to_drupal.client.js');
+
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Create a log entry!'),
+  );
+
+  return $form;
+}
+
+/**
+ * Implements hook_nodejs_message_callback().
+ */
+function node_to_drupal_nodejs_message_callback($type) {
+  return array('node_to_drupal_handler');
+}
+
+/**
+ * Our callback handler for hook_nodejs_message_callback().
+ */
+function node_to_drupal_handler($respose, &$message) {
+  watchdog('node_to_drupal', 'Message from our form!', array(), WATCHDOG_INFO);
+  $message = 'Message logged to watchdog.';
+}
+
