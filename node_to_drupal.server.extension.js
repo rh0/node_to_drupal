@@ -21,16 +21,6 @@ exports.setup = function (config) {
 
   process.on('client-connection', function (sessionId) {
     console.log('Example extension got connection event for session ' + sessionId);
-/*    publishMessageToClient(sessionId, {data: {subject: 'Example extension', body: 'Hello, you just connected.'}});
-    myMessage.clientID = sessionId;
-    sendMessageToBackend(myMessage, function (error, responce, body){
-      if (error) {
-        console.log("Error with my auth client request.", error);
-        return
-      }
-      console.log("We got a responce! ", responce.statusCode);
-      console.log("Body: ",body);
-    });*/
   })
   .on('client-authenticated', function (sessionId, authData) {
     console.log('Example extension got authenticated event for session ' + sessionId + ' (user ' + authData.uid + ')');
