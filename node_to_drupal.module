@@ -2,6 +2,9 @@
 
 /**
  * Implements hook_menu().
+ *
+ * Opening up a page that only displays the form.
+ *
  */
 function node_to_drupal_menu() {
   $items['message-watchdog'] = array(
@@ -15,6 +18,12 @@ function node_to_drupal_menu() {
   return $items;
 }
 
+/**
+ * node_to_drupal_form()
+ *
+ * A VERY simple form for our menu callback.
+ *
+ */
 function node_to_drupal_form($form , &$form_state) {
   drupal_add_js(drupal_get_path('module', 'node_to_drupal') . '/node_to_drupal.client.js');
 
@@ -28,6 +37,10 @@ function node_to_drupal_form($form , &$form_state) {
 
 /**
  * Implements hook_nodejs_message_callback().
+ *
+ * Look for the 'nodeToDrupal' as our 'messageType' coming from the node server.
+ * If we've found it, then define a custom handler and pass it back.
+ *
  */
 function node_to_drupal_nodejs_message_callback($type) {
   switch($type) {
@@ -38,7 +51,12 @@ function node_to_drupal_nodejs_message_callback($type) {
 }
 
 /**
- * Our callback handler for hook_nodejs_message_callback().
+ * node_to_drupal_handler()
+ *
+ * A callback handler that was specified in hook_nodejs_message_callback().
+ * If this handler files it means we have recieved a message of the correct type.
+ * Perform the log to watchdog, and shoot back a responce to node.
+ *
  */
 function node_to_drupal_handler($message, &$responce) {
   watchdog('node_to_drupal', 'Logged a message from our form!', array(), WATCHDOG_INFO);

@@ -3,4 +3,4 @@ description = An example of a nodejs server sending a custom message back to dru
 package = Nodejs
 version = VERSION
 core = 7.x
-
+dependencies[] = nodejs
