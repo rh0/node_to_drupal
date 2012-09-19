@@ -41,8 +41,7 @@ function node_to_drupal_nodejs_message_callback($type) {
  * Our callback handler for hook_nodejs_message_callback().
  */
 function node_to_drupal_handler($message, &$responce) {
-  drupal_json_output(array('messageInHandler' => $message));
-  watchdog('node_to_drupal', 'Message from our form!', array(), WATCHDOG_INFO);
+  watchdog('node_to_drupal', 'Logged a message from our form!', array(), WATCHDOG_INFO);
   $responce = 'Message logged to watchdog.';
 }
 

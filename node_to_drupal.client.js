@@ -1,7 +1,7 @@
 (function ($) {
 
 var message = {
-  type: 'FOO!',
+  type: 'nodeToDrupal',
   body: 'Log to Watchdog',
 };
 
