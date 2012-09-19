@@ -30,14 +30,19 @@ function node_to_drupal_form($form , &$form_state) {
  * Implements hook_nodejs_message_callback().
  */
 function node_to_drupal_nodejs_message_callback($type) {
-  return array('node_to_drupal_handler');
+  switch($type) {
+    case 'nodeToDrupal':
+      return array('node_to_drupal_handler');
+  }
+  return false;
 }
 
 /**
  * Our callback handler for hook_nodejs_message_callback().
  */
-function node_to_drupal_handler($respose, &$message) {
+function node_to_drupal_handler($message, &$responce) {
+  drupal_json_output(array('messageInHandler' => $message));
   watchdog('node_to_drupal', 'Message from our form!', array(), WATCHDOG_INFO);
-  $message = 'Message logged to watchdog.';
+  $responce = 'Message logged to watchdog.';
 }
 

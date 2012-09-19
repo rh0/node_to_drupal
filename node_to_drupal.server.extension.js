@@ -10,10 +10,6 @@
 
 var publishMessageToClient;
 var sendMessageToBackend;
-var myMessage = {
-  messageType: 'customMessage',
-  clientId: 1
-};
 
 exports.setup = function (config) {
   publishMessageToClient = config.publishMessageToClient;
@@ -27,18 +23,16 @@ exports.setup = function (config) {
     publishMessageToClient(sessionId, {data: {subject: 'Example extension', body: 'Welcome, you are authenticated.'}});
   })
   .on('client-message', function (sessionId, message) {
+    message.messageType = 'nodeToDrupal';
     console.log('Example extension got message event for session ' + sessionId);
     console.log(message);
-    if(message['type'] == 'node_to_drupal') {
-      sendMessageToBackend(message, function(error, responce, body) {
-        if(error) {
-          console.log('Error sending message to backend.', error);
-          return;
-        }
-        console.log('Responce from drupal ', responce.statusCode);
-        console.log('Body:', body);
-      }); 
-    }
+    sendMessageToBackend(message, function(error, responce, body) {
+      if(error) {
+        console.log('Error sending message to backend.', error);
+        return;
+      }
+      console.log('Responce from drupal ', body);
+    });
   })
   .on('client-disconnect', function (sessionId) {
     console.log('Example extension got disconnect event for session ' + sessionId);
