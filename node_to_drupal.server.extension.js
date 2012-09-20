@@ -23,7 +23,7 @@ exports.setup = function (config) {
         return;
       }
       // Drupal got it! Output the responce.
-      console.log('Responce from drupal: ', body);
+      console.log('Response from drupal: ', body);
       config.publishMessageToClient(sessionId, {data: {subject: 'Success!', body: body}});
     });
   })
