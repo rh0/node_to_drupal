@@ -11,8 +11,7 @@
   // A simple message.  The listener on the server side does not like us to
   // specify 'messageType' so we're calling it 'type' for now.
   var message = {
-    type: 'nodeToDrupal',
-    body: 'Log to Watchdog',
+    type: 'nodeToDrupal'
   };
 
   Drupal.behaviors.sendDrupalMessage = {
