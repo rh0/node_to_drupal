@@ -54,12 +54,12 @@ function node_to_drupal_nodejs_message_callback($type) {
  * node_to_drupal_handler()
  *
  * A callback handler that was specified in hook_nodejs_message_callback().
- * If this handler files it means we have recieved a message of the correct type.
+ * If this handler fires it means we have recieved a message of the correct type.
  * Perform the log to watchdog, and shoot back a responce to node.
  *
  */
 function node_to_drupal_handler($message, &$responce) {
-  watchdog('node_to_drupal', 'Logged a message from our form!', array(), WATCHDOG_INFO);
-  $responce = 'Message logged to watchdog.';
+  watchdog('node_to_drupal', $message['messageBody'], array(), WATCHDOG_INFO);
+  $responce = 'Message logged to Watchdog!';
 }
 

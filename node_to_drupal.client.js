@@ -11,7 +11,8 @@
   // A simple message.  The listener on the server side does not like us to
   // specify 'messageType' so we're calling it 'type' for now.
   var message = {
-    type: 'nodeToDrupal'
+    type: 'nodeToDrupal',
+    messageBody: 'Hello from the client side!'
   };
 
   Drupal.behaviors.sendDrupalMessage = {
