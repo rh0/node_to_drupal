@@ -59,7 +59,9 @@ function node_to_drupal_nodejs_message_callback($type) {
  *
  */
 function node_to_drupal_handler($message, &$responce) {
+  // Grab our messageBody from the client message and post it to the watchdog.
   watchdog('node_to_drupal', $message['messageBody'], array(), WATCHDOG_INFO);
+  // Tell node we got the message.
   $responce = 'Message logged to Watchdog!';
 }
 
