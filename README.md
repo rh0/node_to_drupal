@@ -14,4 +14,3 @@ For a more detailed description on this demonstration module, check out [_Talkin
 ####When configuring nodejs module be sure to have these settings as follows:
 	clientsCanWriteToClients: true
 	extensions: ['../node_to_drupal/node_to_drupal.server.extension.js']
-
